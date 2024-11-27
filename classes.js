@@ -86,15 +86,6 @@ class Player extends Sprite{
             this.animations[key].image = image;
         }
 
-        // camera beweging box
-        this.cameraBox = {
-            position: {
-                x: this.position.x,
-                y: this.position.y,
-            },
-            width: 400,
-            height: 160,
-        }
     };
 
     // wisselen tussen sprites (animeren)
@@ -107,41 +98,11 @@ class Player extends Sprite{
         this.frameRate = this.animations[key].frameRate;
     };
 
-    updateCameraBox() {
-        this.cameraBox = {
-            position: {
-                x: this.position.x - 250,
-                y: this.position.y - 150,
-            },
-            width: 600,
-            height: 400,
-        };
-    };
-    panCameraToLeft({canvas, camera}) {
-        const cameraBoxRight = this.cameraBox.position.x + this.cameraBox.width;
-        if (cameraBoxRight >= canvas.width){
-            camera.position.x -= this.velocity.x;
-        };
-    };
 
     // player wordt getekend in sprite class
     update() {
         this.updateFrames();
-
-        this.updateCameraBox();
-        c.fillStyle = 'rgba(0, 255, 0, 0.5)';
-        c.fillRect(
-        this.cameraBox.position.x,
-        this.cameraBox.position.y,
-        this.cameraBox.width,
-        this.cameraBox.height)
-
-        /*
-        c.fillStyle = 'rgba(0, 255, 0, 0.5)';
-        c.fillRect(this.position.x, this.position.y, this.width, this.height)
-        */
        
-
         this.draw();
         // collision with bottom
         this.position.x += this.velocity.x;

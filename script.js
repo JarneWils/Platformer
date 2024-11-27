@@ -132,13 +132,6 @@ const keys = {
 
 const gravity = 1;
 
-const camera = {
-    position: {
-        x: 0,
-        y: 0,
-    },
-};
-
 // DRAW
 function animate() {
     // herladen loop
@@ -149,7 +142,7 @@ function animate() {
 
     // Background
     c.save();
-    c.translate(camera.position.x, - background.height + canvas.height); // -image height
+    c.translate(0, - background.height + canvas.height); // -image height
     background.update();
     c.restore();
 
@@ -170,7 +163,6 @@ function animate() {
         player.switchSprite('WalkingRight');
         player.velocity.x = 5;
         player.lastDirection = 'right';
-        player.panCameraToLeft({canvas, camera});
     }
     else if(keys.ArrowLeft.pressed) {
         player.switchSprite('WalkingLeft');
