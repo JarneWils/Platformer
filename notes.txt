@@ -1,0 +1,2 @@
+floor collision blocks: Kan je niet door
+platform collision blocks: kan je enkel langs onder passeren 
