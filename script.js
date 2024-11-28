@@ -140,6 +140,22 @@ function animate() {
     c.fillStyle = 'white';
     c.fillRect(0, 0, canvas.width, canvas.height);
 
+    // Detecteer wanneer de speler dicht bij de rechterkant van het canvas is
+    if (player.position.x > canvas.width - 300 && player.velocity.x > 0) {
+        // Beweeg de achtergrond naar links
+        background.position.x -= 5; // Verplaats achtergrond
+        player.velocity.x = 0;
+
+        // Beweeg de collision blocks naar links
+        collisionBlocks.forEach(block => {
+            block.position.x -= 5;
+        });
+
+        platformCollisionBlocks.forEach(block => {
+            block.position.x -= player.velocity.x;
+        });
+    }
+
     // Background
     c.save();
     c.translate(0, - background.height + canvas.height); // -image height
